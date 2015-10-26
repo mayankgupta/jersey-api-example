@@ -1,3 +1,7 @@
+/*
+ * UserWebService
+ */
+
 package com.jking31cs.jerseyexample.webservices;
 
 import java.util.List;
@@ -26,12 +30,22 @@ public class UserWebService {
         this.store = store;
     }
     
+    /*
+     * Endpoint GET
+     * users/
+     * Retrieve list of all users
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers() {
         return store.getAll();
     }
     
+    /*
+     * Endpoint GET
+     * users/id
+     * Retrieve user details by ID
+     */
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -39,6 +53,12 @@ public class UserWebService {
         return store.get(id);
     }
     
+    /*
+     * Endpoint POST
+     * users/
+     * @param User
+     * Create new user
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -46,6 +66,12 @@ public class UserWebService {
         return store.save(user);
     }
     
+    /*
+     * Endpoint PUT
+     * users/id
+     * @param User
+     * Update user with ID
+     */
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -54,11 +80,15 @@ public class UserWebService {
         return store.save(user);
     }
     
+    /*
+     * Endpoint DELETE
+     * users/id
+     * Delete user with ID
+     */
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public User deleteUser(@PathParam("id") Long id) {
         return store.delete(store.get(id));
     }
-    
 }
